@@ -1,5 +1,7 @@
 # OpenID Connect Spring Client
 
+[![Build Status](https://travis-ci.org/gazbert/openid-connect-spring-client.svg?branch=master)](https://travis-ci.org/gazbert/openid-connect-spring-client)
+
 A simple demo of an [OpenId Connect](http://openid.net/connect/faq/) client using 
 [Spring Security](http://docs.spring.io/spring-security/site/docs/4.2.2.RELEASE/reference/htmlsingle) and 
 [Spring OAuth2](https://projects.spring.io/spring-security-oauth/docs/oauth2.html) to authenticate with the 
@@ -39,7 +41,7 @@ It's worth taking a look at the browser network tab to see the OpenID Connect in
 The app console log dumps out some useful stuff too, e.g. the Id and Access Token details.
 
 ## Testing
-A bare-bones [integration test](.src/test/java/org/gazbert/openidconnect/client/OpenIdConnectClientApplicationIT.java) 
+A bare-bones [integration test](./src/test/java/org/gazbert/openidconnect/client/OpenIdConnectClientApplicationIT.java) 
 is included and can be run as part of the build. To do this:
  
 1. Set the pom.xml property `<skip.integration.tests>false</skip.integration.tests>`.
