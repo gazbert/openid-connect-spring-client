@@ -44,9 +44,8 @@ The app console log dumps out some useful stuff too, e.g. the Id and Access Toke
 A bare-bones [integration test](./src/test/java/org/gazbert/openidconnect/client/OpenIdConnectClientApplicationIT.java) 
 is included and can be run as part of the build. To do this:
  
-1. Set the pom.xml property `<skip.integration.tests>false</skip.integration.tests>`.
 1. Start the app: `mvn spring-boot:run`
-1. Run the test: `mvn verify`
+1. Run the test: `mvn verify -Dskip.integration.tests=false`
 
 ## Credits
 This app took a lot of inspiration from the excellent tutorial by [eugenp](https://github.com/eugenp/tutorials/tree/master/spring-security-openid).
