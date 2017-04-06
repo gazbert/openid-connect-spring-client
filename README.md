@@ -34,7 +34,7 @@ Once you've authenticated with Google and authorized the app, you should get red
 ```
 Secured Homepage
 
-UserId: ALongNnumber
+UserId: ALongNumber
 Email: xx@gmail.com
 ```
 
