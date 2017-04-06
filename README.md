@@ -34,7 +34,8 @@ Once you've authenticated with Google and authorized the app, you should get red
 ```
 Secured Homepage
 
-Welcome: xxx@gmail.com
+UserId: ALongNnumber
+Email: xx@gmail.com
 ```
 
 It's worth taking a look at the browser network tab to see the OpenID Connect interactions. 

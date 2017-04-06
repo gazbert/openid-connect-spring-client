@@ -1,5 +1,6 @@
 package org.gazbert.openidconnect.client.controllers;
 
+import org.gazbert.openidconnect.client.security.OpenIdConnectUserDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,9 +26,11 @@ public class HomeController {
         final String username = SecurityContextHolder.getContext().getAuthentication().getName();
         log.info("Authenticated Username: " + username);
 
-        final Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        log.info("Authentication Principal: " + principal);
+        final OpenIdConnectUserDetails userDetails =
+                (OpenIdConnectUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        log.info("Authentication Principal: " + userDetails);
 
-        return "<h2>Secured Homepage</h2>Welcome: " + username;
+        return "<h2>Secured Homepage</h2>User Id: " + userDetails.getUsername()
+                + (userDetails.getEmail() != null ? "<p>Email: " + userDetails.getEmail() : "");
     }
 }

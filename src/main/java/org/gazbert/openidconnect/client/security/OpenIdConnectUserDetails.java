@@ -20,18 +20,18 @@ public class OpenIdConnectUserDetails implements UserDetails {
     private static final long serialVersionUID = -4153740588312462691L;
 
     private String userId;
-    private String username;
+    private String email;
     private OAuth2AccessToken accessToken;
 
     OpenIdConnectUserDetails(Map<String, String> userInfo, OAuth2AccessToken accessToken) {
         this.userId = userInfo.get("sub");
-        this.username = userInfo.get("email");
+        this.email = userInfo.get("email");
         this.accessToken = accessToken;
     }
 
     @Override
     public String getUsername() {
-        return username;
+        return userId;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class OpenIdConnectUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return null; // not relevant for OpenID Connect
     }
 
     @Override
@@ -64,19 +64,19 @@ public class OpenIdConnectUserDetails implements UserDetails {
         return true;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
     public OAuth2AccessToken getAccessToken() {
         return accessToken;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
                 .add("userId", userId)
-                .add("username", username)
+                .add("email", email)
                 .add("accessToken", accessToken)
                 .toString();
     }

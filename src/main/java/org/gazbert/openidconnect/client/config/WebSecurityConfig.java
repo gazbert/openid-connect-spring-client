@@ -1,6 +1,6 @@
 package org.gazbert.openidconnect.client.config;
 
-import org.gazbert.openidconnect.client.security.OpenIdConnectFilter;
+import org.gazbert.openidconnect.client.security.OpenIdConnectAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,8 +37,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public OpenIdConnectFilter createOpenIdConnectFilter() {
-        final OpenIdConnectFilter openIdConnectFilter = new OpenIdConnectFilter("/login");
+    public OpenIdConnectAuthenticationFilter createOpenIdConnectFilter() {
+        final OpenIdConnectAuthenticationFilter openIdConnectFilter = new OpenIdConnectAuthenticationFilter("/login");
         openIdConnectFilter.setRestTemplate(oAuth2RestTemplate);
         return openIdConnectFilter;
     }

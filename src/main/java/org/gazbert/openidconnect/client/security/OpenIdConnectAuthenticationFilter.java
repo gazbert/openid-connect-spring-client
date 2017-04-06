@@ -5,9 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.jwt.Jwt;
 import org.springframework.security.jwt.JwtHelper;
 import org.springframework.security.oauth2.client.OAuth2RestOperations;
@@ -16,6 +14,7 @@ import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.common.exceptions.InvalidTokenException;
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
+import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -23,25 +22,27 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
+import static java.util.Optional.empty;
+
 /**
  * Custom authentication filter for using OpenID Connect.
  *
  * @author gazbert
  */
-public class OpenIdConnectFilter extends AbstractAuthenticationProcessingFilter {
+public class OpenIdConnectAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
     private OAuth2RestOperations restTemplate;
 
-    public OpenIdConnectFilter(String defaultFilterProcessesUrl) {
+    public OpenIdConnectAuthenticationFilter(String defaultFilterProcessesUrl) {
         super(defaultFilterProcessesUrl);
         setAuthenticationManager(new NoOpAuthenticationManager());
     }
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
-            throws AuthenticationException, IOException, ServletException {
+            throws IOException, ServletException {
 
         OAuth2AccessToken accessToken;
 
@@ -69,9 +70,9 @@ public class OpenIdConnectFilter extends AbstractAuthenticationProcessingFilter 
 
             @SuppressWarnings("unchecked")
             final OpenIdConnectUserDetails userDetails = new OpenIdConnectUserDetails(authInfo, accessToken);
-            log.info("OpenIdConnectUserDetails -> userId: " + userDetails.getUserId());
+            log.info("OpenIdConnectUserDetails -> userId: " + userDetails.getUsername());
 
-            return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+            return new PreAuthenticatedAuthenticationToken(userDetails, empty(), userDetails.getAuthorities());
 
         } catch (InvalidTokenException e) {
             throw new BadCredentialsException("Could not obtain user details from Access Token", e);
@@ -85,7 +86,7 @@ public class OpenIdConnectFilter extends AbstractAuthenticationProcessingFilter 
 
     private static class NoOpAuthenticationManager implements AuthenticationManager {
         @Override
-        public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+        public Authentication authenticate(Authentication authentication) {
             throw new UnsupportedOperationException("No authentication should be done with this AuthenticationManager");
         }
     }
