@@ -35,11 +35,11 @@ Once you've authenticated with Google and authorized the app, you should get red
 Secured Homepage
 
 UserId: ALongNumber
-Email: xx@gmail.com
+Email: <username>@gmail.com
 ```
 
 It's worth taking a look at the browser network tab to see the OpenID Connect interactions. 
-The app console log dumps out some useful stuff too, e.g. the Id and Access Token details.
+The app console log dumps out some useful stuff too, e.g. token details and user info.
 
 ## Testing
 A bare-bones [integration test](./src/test/java/org/gazbert/openidconnect/client/OpenIdConnectClientApplicationIT.java) 

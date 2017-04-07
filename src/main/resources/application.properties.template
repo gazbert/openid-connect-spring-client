@@ -4,4 +4,5 @@ google.openidconnect.client_id=yourClientId
 google.openidconnect.client_secret=yourClientSecret
 google.openidconnect.auth_uri=https://accounts.google.com/o/oauth2/auth
 google.openidconnect.token_uri=https://accounts.google.com/o/oauth2/token
+google.openidconnect.userinfo_uri=https://www.googleapis.com/oauth2/v3/userinfo
 google.openidconnect.redirect_uri=http://localhost:8080/login
