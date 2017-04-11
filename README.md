@@ -28,7 +28,7 @@ A simple demo of an [OpenId Connect](http://openid.net/connect/faq/) client usin
 1. Update `google.openidconnect.optional.scopes` in `application.properties` as required.
 1. Build the app: `mvn clean install`
 1. Start the app: `mvn spring-boot:run`
-1. Open a browser and go to: `http://localhost:8080` (port can be changed in `application.properties`)
+1. Open a browser and go to: `http://localhost:8080`
 
 Once you've authenticated with Google and authorized the app, you should get redirected to the Homepage:
 
@@ -50,7 +50,7 @@ is included and can be run as part of the build. To do this:
 1. Run the test: `mvn verify -Dskip.integration.tests=false`
 
 ## Credits
-This app took a lot of inspiration from the excellent tutorial by [eugenp](https://github.com/eugenp/tutorials/tree/master/spring-security-openid).
+This app was inspired by the excellent tutorial written by [eugenp](https://github.com/eugenp/tutorials/tree/master/spring-security-openid).
 The integration test originated from code written by [fromi](https://github.com/fromi/spring-google-openidconnect).
 
 ## References
