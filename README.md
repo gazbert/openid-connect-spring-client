@@ -25,6 +25,7 @@ A simple demo of an [OpenId Connect](http://openid.net/connect/faq/) client usin
 
 1. Rename `application.properties.template` to `application.properties`.
 1. Add your clientId and clientSecret to the `application.properties` file.
+1. Update `google.openidconnect.optional.scopes` in `application.properties` as required.
 1. Build the app: `mvn clean install`
 1. Start the app: `mvn spring-boot:run`
 1. Open a browser and go to: `http://localhost:8080` (port can be changed in `application.properties`)

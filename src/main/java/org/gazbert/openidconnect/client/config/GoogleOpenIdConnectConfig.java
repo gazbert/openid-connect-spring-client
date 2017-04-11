@@ -10,7 +10,9 @@ import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResour
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * OpenID Connect config for authenticating using the Google Identity Platform.
@@ -38,6 +40,9 @@ public class GoogleOpenIdConnectConfig {
     @Value("${google.openidconnect.redirect_uri}")
     private String redirectUri;
 
+    @Value("${google.openidconnect.optional.scopes}")
+    private String optionalScopes;
+
     @Bean
     public OAuth2RestTemplate getGoogleOpenIdConnectRestTemplate(@Qualifier("oauth2ClientContext")
                                                                              OAuth2ClientContext clientContext) {
@@ -52,9 +57,10 @@ public class GoogleOpenIdConnectConfig {
         resourceDetails.setUserAuthorizationUri(authorizationUri);
         resourceDetails.setAccessTokenUri(tokenUri);
 
-        // Here we request access to the user's email address.
-        // Other IdPs might have more scope options...
-        resourceDetails.setScope(Arrays.asList("openid", "email"));
+        final List<String> scopes = new ArrayList<>();
+        scopes.add("openid"); // always need this
+        scopes.addAll(Arrays.asList(optionalScopes.split(",")));
+        resourceDetails.setScope(scopes);
 
         resourceDetails.setPreEstablishedRedirectUri(redirectUri);
         resourceDetails.setUseCurrentUri(false);

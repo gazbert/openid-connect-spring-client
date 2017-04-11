@@ -6,3 +6,9 @@ google.openidconnect.auth_uri=https://accounts.google.com/o/oauth2/auth
 google.openidconnect.token_uri=https://accounts.google.com/o/oauth2/token
 google.openidconnect.userinfo_uri=https://www.googleapis.com/oauth2/v3/userinfo
 google.openidconnect.redirect_uri=http://localhost:8080/login
+
+# The sample app will always request the openid scope for you.
+# You can request additional (comma delimited) scopes here.
+# The example requests Google email and profile.
+# Other IdPs might have different scopes.
+google.openidconnect.optional.scopes=email, profile
