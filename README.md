@@ -12,7 +12,7 @@ A simple demo of an [OpenId Connect](http://openid.net/connect/faq/) client usin
 ### Google Credentials
 
 1. Instructions assume you already have a [Google account](https://accounts.google.com/).
-1. Create a new project at [Google Developer Console](https://console.developers.google.com/iam-admin/projects).
+1. Create a new project at [Google Developer Console](https://console.developers.google.com/).
 1. Click on 'Credentials' on left menu.
 1. Click on 'OAuth consent screen' tab,
 1. Add 'Product name shown to users' e.g. MyThingyApp. Save.
