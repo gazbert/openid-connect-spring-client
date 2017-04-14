@@ -81,7 +81,6 @@ public class OpenIdConnectAuthenticationFilter extends AbstractAuthenticationPro
 
     public void setRestTemplate(OAuth2RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
-
     }
 
     private static class NoOpAuthenticationManager implements AuthenticationManager {
