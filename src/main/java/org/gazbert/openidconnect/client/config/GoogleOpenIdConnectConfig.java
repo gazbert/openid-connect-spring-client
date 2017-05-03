@@ -8,6 +8,7 @@ import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails;
+import org.springframework.security.oauth2.common.AuthenticationScheme;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 
 import java.util.ArrayList;
@@ -52,6 +53,7 @@ public class GoogleOpenIdConnectConfig {
     @Bean
     public OAuth2ProtectedResourceDetails createGoogleOpenIdConnectConfig() {
         final AuthorizationCodeResourceDetails resourceDetails = new AuthorizationCodeResourceDetails();
+        resourceDetails.setClientAuthenticationScheme(AuthenticationScheme.form); // include client credentials in POST Content
         resourceDetails.setClientId(clientId);
         resourceDetails.setClientSecret(clientSecret);
         resourceDetails.setUserAuthorizationUri(authorizationUri);
